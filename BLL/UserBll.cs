@@ -4,64 +4,86 @@ using TaskManager.Common.DTO;
 using DAL.Repository;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using TaskManager.Common.Logger;
 
 namespace BLL
 {
     public class UserBll : IUserBll
     {
         private readonly IUserDal _userDal;
-
-        public UserBll(IUserDal userDal)
+        private readonly ILogger _iLogger;
+        public UserBll(IUserDal userDal, ILogger iLogger)
         {
             _userDal = userDal;
+            _iLogger = iLogger;
+
         }
         public UserDto RegisterUser(UserDto userDto)
         {
-            if (_userDal.GetUserByEmail(userDto.Email) == null){
-
-                string password = userDto.Password;
-                string salt = CreateSalt();
-                string hash = CreateHash(password, salt);
-
-                userDto.Password = hash;
-                userDto.Salt = salt;
-
-                return _userDal.RegisterUser(userDto);
-            }
-            else
+            try
             {
-                return null;
-            }
-        }
+                if (_userDal.GetUserByEmail(userDto.Email) == null)
+                {
 
-        public IEnumerable<UserDto> GetAllUsers()
-        {
-            throw new NotImplementedException();
-        }
+                    string password = userDto.Password;
+                    string salt = CreateSalt();
+                    string hash = CreateHash(password, salt);
 
-        public UserDto GetUserByEmail(string email, string password)
-        {
-           var user = _userDal.GetUserByEmail(email);
-           if (  user != null)
-            {
-                string salt = user.Salt;
-                string hashedPassword = CreateHash(password, salt);
-                if(hashedPassword.Equals(user.Password))
-                    return user;
+                    userDto.Password = hash;
+                    userDto.Salt = salt;
+
+                    return _userDal.RegisterUser(userDto);
+                }
                 else
                 {
+                   
                     return null;
                 }
             }
-           else
+            catch (Exception e)
             {
-                return null;
+                _iLogger.Error("Exception Thrown", e);
+                throw;
+            }
+        }
+
+       
+        public UserDto GetUserByEmail(string email, string password)
+        {
+            try
+            {
+                var user = _userDal.GetUserByEmail(email);
+                if (user != null)
+                {
+                    string salt = user.Salt;
+                    string hashedPassword = CreateHash(password, salt);
+                    if (!hashedPassword.Equals(user.Password))
+                    {
+                        user = null;
+                    }
+                }
+                return user;
+            }
+            catch (Exception ex)
+            {
+                _iLogger.Error("Exception Thrown", ex);
+                throw;
             }
         }
 
         public UserDto GetUser(string email)
         {
-            return _userDal.GetUserByEmail(email);
+
+            try
+            {
+                return _userDal.GetUserByEmail(email);
+            }
+            catch (Exception e)
+            {
+
+                _iLogger.Error("Exception Thrown", e);
+                throw;
+            }
         }
 
         public string CreateHash(string value, string salt)

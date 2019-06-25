@@ -8,8 +8,6 @@ namespace BLL
     {
         UserDto RegisterUser(UserDto userDto);
 
-        IEnumerable<UserDto> GetAllUsers();
-
         UserDto GetUserByEmail(string email, string password);
 
         UserDto GetUser(string email);

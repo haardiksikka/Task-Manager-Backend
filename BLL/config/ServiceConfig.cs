@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using DAL.Repository;
+using TaskManager.Common.Logger;
 
 namespace BLL.config
 {
@@ -12,6 +13,7 @@ namespace BLL.config
         {
             services.AddTransient<IUserDal, UserDal>();
             services.AddTransient<ITaskDal, TaskDal>();
+            services.AddTransient<ILogger, Logger>();
         }
     }
 }
