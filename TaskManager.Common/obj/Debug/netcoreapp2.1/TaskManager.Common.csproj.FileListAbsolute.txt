@@ -1,0 +1,8 @@
+C:\Users\haardiksikka\source\repos\TaskManager\TaskManager.Common\bin\Debug\netcoreapp2.1\TaskManager.Common.deps.json
+C:\Users\haardiksikka\source\repos\TaskManager\TaskManager.Common\bin\Debug\netcoreapp2.1\TaskManager.Common.dll
+C:\Users\haardiksikka\source\repos\TaskManager\TaskManager.Common\bin\Debug\netcoreapp2.1\TaskManager.Common.pdb
+C:\Users\haardiksikka\source\repos\TaskManager\TaskManager.Common\obj\Debug\netcoreapp2.1\TaskManager.Common.csproj.CoreCompileInputs.cache
+C:\Users\haardiksikka\source\repos\TaskManager\TaskManager.Common\obj\Debug\netcoreapp2.1\TaskManager.Common.AssemblyInfoInputs.cache
+C:\Users\haardiksikka\source\repos\TaskManager\TaskManager.Common\obj\Debug\netcoreapp2.1\TaskManager.Common.AssemblyInfo.cs
+C:\Users\haardiksikka\source\repos\TaskManager\TaskManager.Common\obj\Debug\netcoreapp2.1\TaskManager.Common.dll
+C:\Users\haardiksikka\source\repos\TaskManager\TaskManager.Common\obj\Debug\netcoreapp2.1\TaskManager.Common.pdb
