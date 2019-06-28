@@ -73,5 +73,14 @@ namespace TaskManager.Controllers
                 throw;
             }
         }
+
+        [HttpPost]
+        [Route("edittask")]
+        public bool EditTask([FromBody] TaskManager.Models.Task task)
+        {
+            var user = _userBll.GetUser(task.Email);
+            task.UserId = user.UserId;
+            return _taskBll.EditTask(_mapper.TaskToTaskDto(task));
+        }
     }
 }

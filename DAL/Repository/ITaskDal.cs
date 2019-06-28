@@ -8,5 +8,6 @@ namespace DAL.Repository
         TaskDto AddNewTask(TaskDto task);
         IEnumerable<TaskDto> GetUserTask(string email);
         bool DeleteTask(int id);
+        bool EditTask(TaskDto task);
     }
 }

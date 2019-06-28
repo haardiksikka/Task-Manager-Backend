@@ -4,6 +4,7 @@ using DAL.Models;
 using System.Linq;
 using System;
 using TaskManager.Common.Logger;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repository
 {
@@ -65,6 +66,15 @@ namespace DAL.Repository
             {
                 throw;
             }
+        }
+
+        public bool EditTask(TaskDto taskDto)
+        {
+            var task = _mapper.TaskDtoToTask(taskDto);
+            _context.Entry(task).State = EntityState.Modified;
+            _context.SaveChanges();
+            return true;
+
         }
     }
 }

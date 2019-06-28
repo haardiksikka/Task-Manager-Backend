@@ -23,7 +23,6 @@ namespace BLL
             }
             catch (Exception e)
             {
-
                 _logger.Error("Exception Thrown", e);
                 throw;
             }
@@ -57,6 +56,11 @@ namespace BLL
                 _logger.Error("Exception Thrown", e);
                 throw;
             }
+        }
+
+        public bool EditTask(TaskDto task)
+        {
+            return _taskDal.EditTask(task);
         }
        
     }

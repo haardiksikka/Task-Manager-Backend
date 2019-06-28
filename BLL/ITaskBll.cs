@@ -8,6 +8,7 @@ namespace BLL
         TaskDto AddNewTask(TaskDto taskDto);
         bool DeleteTask(int id);
         IEnumerable<TaskDto> GetUserTask(string Email);
+        bool EditTask(TaskDto taskDto);
         // IEnumerable<TaskDto> GetAllTask();
     }
 }
